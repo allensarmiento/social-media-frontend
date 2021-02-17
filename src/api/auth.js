@@ -7,7 +7,15 @@ export const signin = async (user) => {
       { user },
       { withCredentials: true },
     );
+    return response.data;
+  } catch(error) {
+    console.log(error);
+  }
+};
 
+export const signup = async (user) => {
+  try {
+    const response = await axios.post('/auth/signup', { user });
     return response.data;
   } catch(error) {
     console.log(error);
