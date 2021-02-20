@@ -13,22 +13,21 @@ const Menu = ({ history }) => {
       <div>
         <h1>Social Media</h1>
         <Link to="/">Home</Link>
-        {isAuthenticated() && (
-          <span>
-            <Link to="/signup">
-              <Button>Sign up</Button>
-            </Link>
-            <Link to="/signin">
-              <Button>Sign In</Button>
-            </Link>
-          </span>
-        )}
-        {isAuthenticated() && (
+        {isAuthenticated() ? (
           <span>
             <Link to={`/user/${getAuthenticatedUser().user._id}`}>
-              <Button>My Profile</Button>
+              <button>My Profile</button>
             </Link>
-            <Button onClick={onSignOutClicked}>Sign Out</Button>
+            <button onClick={onSignOutClicked}>Sign Out</button>
+          </span>
+        ) : (
+          <span>
+            <Link to="/signup">
+              <button>Sign up</button>
+            </Link>
+            <Link to="/signin">
+              <button>Sign In</button>
+            </Link>
           </span>
         )}
       </div>

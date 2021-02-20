@@ -15,13 +15,15 @@ class Signup extends Component {
   }
 
   handleInputChange = name => event => {
-    this.setState({ name: event.target.value });
+    this.setState({ [name]: event.target.value });
   };
 
   onSignupClicked = () => {
     const { name, email, password } = this.state;
     const user = { name, email, password };
     signup(user).then((data) => {
+      if (!data) return;
+
       if (data.error) {
         this.setState({ error: data.error });
       } else {
@@ -31,25 +33,28 @@ class Signup extends Component {
   };
 
   render() {
-    const { error } = this.state;
+    const { name, email, password, error, dialogOpen } = this.state;
 
     return (
       <div>
         <h1>Sign Up</h1>
         <input
           placeholder="Name"
+          value={name}
           onChange={this.handleInputChange('name')}
         />
         <br />
         <input
           type="email"
           placeholder="Email"
+          value={email}
           onChange={this.handleInputChange('email')}
         />
         <br />
         <input
           type="password"
           placeholder="Password"
+          value={password}
           onChange={this.handleInputChange('password')}
         />
         <br />
