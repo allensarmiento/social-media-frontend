@@ -10,7 +10,7 @@ class Signup extends Component {
       email: '',
       password: '',
       error: '',
-      dialogOpen: false,
+      dialogOpen: false
     };
   }
 
@@ -21,6 +21,7 @@ class Signup extends Component {
   onSignupClicked = () => {
     const { name, email, password } = this.state;
     const user = { name, email, password };
+    
     signup(user).then((data) => {
       if (!data) return;
 

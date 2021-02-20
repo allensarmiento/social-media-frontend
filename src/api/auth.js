@@ -4,7 +4,7 @@ export const signin = async (user) => {
   try {
     const response = await axios.post(
       '/auth/signin',
-      { user },
+      user,
       { withCredentials: true },
     );
     return response.data;
@@ -49,9 +49,9 @@ export const isAuthenticated = () => {
   }
 };
 
-export const authenticate = async (token, callback) => {
+export const authenticate = async (data, callback) => {
   if (typeof window !== 'undefined') {
-    sessionStorage.setItem('token', JSON.stringify(token));
+    sessionStorage.setItem('token', JSON.stringify(data));
   }
 
   callback();
