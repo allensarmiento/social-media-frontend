@@ -10,3 +10,16 @@ export const list = async (signal) => {
     console.log(err);
   }
 };
+
+export const profile = async (params, credentials) => {
+  try {
+    const response = await axios.get(`/api/users/${params.userId}`, {
+      headers: {
+        'Authorization': `Bearer ${credentials.token}`
+      }
+    });
+    return response.data;
+  } catch (err) {
+    console.log(err);
+  }
+};

@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import { Link } from 'react-router-dom';
 import * as user from '../api/user';
 
 class Users extends Component {
@@ -27,8 +28,19 @@ class Users extends Component {
   }
 
   render() {
+    const { users } = this.state;
+
     return (
-      <div></div>
+      <div>
+        <h2>All Users</h2>
+        <div>
+          {users.map(user => (
+            <Link to={`/user/${user._id}`} key={user._id}>
+              {user.name} &rarr;
+            </Link>
+          ))}
+        </div>
+      </div>
     );
   }
 }
